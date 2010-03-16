@@ -1,0 +1,85 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumerate}
+\usepackage{a4wide}
+\usepackage{listings}
+\lstset{
+  basicstyle=\ttfamily
+}
+
+\author{Alex Duller}
+\title{Question 3}
+
+\begin{document}
+\textbf{Question 1}
+\begin{enumerate}[(i)]
+\item
+\begin{proof}[Proof of has\_friend(winnie, tigger)]
+  Assume that the negation of \verb#has_friend(winnie, tigger)# (shown as (5)
+  below) can be proved from P.\\
+\begin{eqnarray}
+  loner(eeyore). &&\\
+  has\_friend(tigger, winnie). &&\\
+  &:-& has\_friend(X, X).\\
+  has\_friend(X, Y) &:-& has\_friend(Y, X).\\
+  &:-& has\_friend(winnie, tigger).
+\end{eqnarray}
+Substitute {X \ensuremath{\to} winnie, Y \ensuremath{\to} tigger} into (4) gives
+\begin{equation}
+  has\_friend(winnie, tigger) :- has\_friend(tigger, winnie).
+\end{equation}
+Resolve (5) and (6) on \verb#has_friend(winnie, tigger)# gives:
+\begin{equation}
+  :- has\_friend(tigger, winnie).
+\end{equation}
+Resolve (7) and (2) on \verb#has_friend(tigger, winnie)# gives:
+\begin{equation}
+  :-
+\end{equation}
+Since we get an empty clause, \verb#:- has_friend(winnie, trigger)# and P are
+mutually inconsistent and out initial assumption is a contradiction.
+
+Therefore, \verb#has_friend(winnie, tigger)# can be proved from P.
+\end{proof}
+
+\item \verb#{eeyore, tigger, winnie}#
+
+\item
+\begin{lstlisting}
+{loner(eeyore), 
+ loner(tigger), 
+ loner(winnie),
+ has_friend(tigger, tigger), 
+ has_friend(tigger, winnie), 
+ has_friend(tigger, eeyore),
+ has_friend(winnie, winnie), 
+ has_friend(winnie, tigger), 
+ has_friend(winnie, eeyore),
+ has_friend(eeyore, eeyore), 
+ has_friend(eeyore, tigger), 
+ has_friend(eeyore, winnie)}
+\end{lstlisting}
+
+% (iv)
+\item Must obviously be true in P:
+\begin{lstlisting}
+  {loner(eeyore).
+   has_friend(tigger, winnie).
+   has_friend(winnie, tigger).}
+\end{lstlisting}
+
+%% Must obviously be false in P:
+%% \begin{lstlisting}
+%%   has_friend(eeyore, eeyore).
+%%   has_friend(winnie, winnie).
+%%   has_friend(tigger, tigger).
+%% \end{lstlisting}
+
+% (v)
+\item
+
+% (vi) 
+\item
+
+\end{enumerate}
+\end{document}

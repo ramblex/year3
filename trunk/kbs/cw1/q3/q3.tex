@@ -1,0 +1,103 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{enumerate}
+\usepackage{a4wide}
+\author{Alex Duller}
+\title{Question 3}
+
+\begin{document}
+\textbf{Question 3}
+\begin{enumerate}[(a)]
+\item \verb#{labour, opposition, cabinet_member, powerful}#
+\item
+\begin{itemize}
+\item Let A denote \verb#labour; opposition :- cabinet_member#
+\item Let B denote \verb#powerful :- cabinet_member, labour.#
+\item Let C denote \verb#:- opposition.#
+\item Let D denote \verb#cabinet_member.#
+\end{itemize}
+\begin{center}
+\begin{tabular}{ | c | c | c | c || c | c | c | c | c | }
+  \hline
+  \verb#labour# & \verb|opposition| & \verb|cabinet_member| & \verb|powerful| & A & B & C & D & model?\\
+  \hline
+  \hline
+  T & T & T & T &     T & T & F & T &    F \\
+  \hline
+  T & T & T & F &     T & F & F & T &    F \\
+  \hline
+  T & T & F & T &     T & T & F & F &    F \\
+  \hline
+  T & T & F & F &     T & F & F & F &    F \\
+  \hline
+  T & F & T & T &     T & T & T & T &    T \\
+  \hline
+  T & F & T & F &     T & F & T & T &    F \\
+  \hline
+  T & F & F & T &     T & T & T & F &    F \\
+  \hline
+  T & F & F & F &     T & F & T & F &    F \\
+  \hline
+  F & T & T & T &     T & T & F & T &    F \\
+  \hline
+  F & T & T & F &     T & F & F & T &    F \\
+  \hline
+  F & T & F & T &     T & T & F & F &    F \\
+  \hline
+  F & T & F & F &     T & T & F & F &    F \\
+  \hline
+  F & F & T & T &     F & T & T & T &    F \\
+  \hline
+  F & F & T & F &     F & F & T & T &    F \\
+  \hline
+  F & F & F & T &     T & T & T & F &    F \\
+  \hline
+  F & F & F & F &     T & T & T & F &    F \\
+  \hline
+\end{tabular}
+\end{center}
+
+\item \verb#powerful.# is equivalent to \verb#powerful :- true.# The only model
+  of the programme is \verb#{labour, cabinet_member, powerful}#. Since this
+  model is also a model of \verb#powerful.#, we can conclude that
+  \verb#powerful.# is a logical consequence of the programme.
+
+\item
+\begin{proof}[Proof that powerful is a logical consequence of P by refutation]
+
+Assume that the negation of \verb#powerful.# (\verb#:- powerful.#) is a logical
+consequence of P.\\
+\begin{eqnarray}
+  labour; opposition &:-& cabinet\_member.\\
+  powerful &:-& cabinet\_member, labour.\\
+  &:-& opposition.\\
+  cabinet\_member.\\
+  &:-& powerful.
+\end{eqnarray}
+
+Resolving (1) and (2) on \verb,labour, gives:
+\begin{equation}
+opposition; powerful :- cabinet\_member.
+\end{equation}
+
+Resolving (6) and (5) on \verb,powerful, gives:
+\begin{equation}
+opposition :- cabinet\_member.
+\end{equation}
+
+Resolving (7) and (3) on \verb,opposition, gives:
+\begin{equation}
+:- cabinet\_member.
+\end{equation}
+Resolving (8) and (4) on \verb,cabinet_member, gives:
+\begin{equation}
+:-
+\end{equation}
+Since we get an empty clause, \verb#:- powerful.# and P are mutually
+inconsistent and our initial assumption is a contradiction.
+
+\verb#powerful.# is therefore, a logical consequence of P.
+\end{proof}
+
+\end{enumerate}
+\end{document}
